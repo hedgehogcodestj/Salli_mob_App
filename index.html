@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Salli</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<body>
+
+<main class="app">
+
+
+    <!-- ==================================================
+         GROUP HOME
+    ================================================== -->
+
+    <section id="groupsPage">
+
+        <header class="main-header">
+
+            <p class="eyebrow">
+                SALLI
+            </p>
+
+            <h1>
+                Who paid what,
+                <br>
+                without the headache.
+            </h1>
+
+        </header>
+
+
+        <!-- CREATE GROUP -->
+
+        <button
+            class="new-group-button"
+            onclick="createGroup()"
+        >
+
+            <span class="plus-symbol">+</span>
+
+            <span>New group</span>
+
+        </button>
+
+
+        <!-- GROUPS -->
+
+        <section class="groups-section">
+
+            <p class="section-label">
+                YOUR GROUPS
+            </p>
+
+
+            <div id="groupsList">
+
+                <p class="empty-text">
+                    Create your first group.
+                </p>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         GROUP PAGE
+    ================================================== -->
+
+    <section
+        id="groupPage"
+        class="page hidden"
+    >
+
+        <header class="page-header">
+
+            <button
+                class="back-button"
+                onclick="showGroupsPage()"
+            >
+                ←
+            </button>
+
+
+            <div class="page-header-title">
+
+                <p class="eyebrow">
+                    GROUP
+                </p>
+
+                <h2 id="groupName">
+                    Roommates
+                </h2>
+
+            </div>
+
+
+            <button
+                class="edit-button"
+                onclick="editCurrentGroup()"
+            >
+                Edit
+            </button>
+
+        </header>
+
+
+
+        <!-- PEOPLE -->
+
+        <section class="people-section">
+
+            <div class="section-heading-row">
+
+                <p class="section-label">
+                    PEOPLE
+                </p>
+
+                <button
+                    class="text-button"
+                    onclick="addPerson()"
+                >
+                    + Add
+                </button>
+
+            </div>
+
+
+            <div
+                id="peopleList"
+                class="people-list"
+            ></div>
+
+        </section>
+
+
+
+        <!-- CURRENT CYCLE -->
+
+        <section class="current-section">
+
+            <div class="section-heading-row">
+
+                <div>
+
+                    <p class="section-label">
+                        CURRENT
+                    </p>
+
+                    <p
+                        id="cycleStatus"
+                        class="cycle-status"
+                    >
+                        No expenses yet
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SETTLEMENT -->
+
+            <div class="settlement-card">
+
+                <p class="card-label">
+                    SETTLEMENT
+                </p>
+
+
+                <div id="settlementList">
+
+                    <p class="empty-text dark-empty">
+                        Add an expense to see
+                        who owes whom.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="settleButton"
+                    class="settle-button hidden"
+                    onclick="settleCurrentCycle()"
+                >
+                    Mark as settled
+                </button>
+
+            </div>
+
+
+
+            <!-- NEW EXPENSE -->
+
+            <button
+                class="new-expense-button"
+                onclick="showExpensePage()"
+            >
+
+                <span class="plus-symbol">
+                    +
+                </span>
+
+                <span>
+                    New expense
+                </span>
+
+            </button>
+
+
+
+            <!-- TRANSACTIONS -->
+
+            <section class="transactions-section">
+
+                <p class="section-label">
+                    TRANSACTIONS
+                </p>
+
+
+                <div id="currentTransactions">
+
+                    <p class="empty-text">
+                        Nothing here yet.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- HISTORY -->
+
+        <section class="history-section">
+
+            <p class="section-label">
+                HISTORY
+            </p>
+
+
+            <div id="historyList">
+
+                <p class="empty-text">
+                    Settled cycles will appear here.
+                </p>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         NEW EXPENSE
+    ================================================== -->
+
+    <section
+        id="expensePage"
+        class="page hidden"
+    >
+
+        <header class="page-header">
+
+            <button
+                class="back-button"
+                onclick="showGroupPage()"
+            >
+                ←
+            </button>
+
+
+            <div>
+
+                <p class="eyebrow">
+                    TRANSACTION
+                </p>
+
+                <h2>
+                    New expense
+                </h2>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- WHAT -->
+
+        <section class="form-section">
+
+            <label>
+                WHAT WAS IT?
+            </label>
+
+            <input
+                id="expenseName"
+                type="text"
+                placeholder="Rice packet"
+                autocomplete="off"
+            >
+
+        </section>
+
+
+
+        <!-- AMOUNT -->
+
+        <section class="form-section">
+
+            <label>
+                AMOUNT
+            </label>
+
+
+            <div class="money-input">
+
+                <span>
+                    Rs.
+                </span>
+
+                <input
+                    id="expenseAmount"
+                    type="number"
+                    placeholder="200"
+                    min="0"
+                    step="0.01"
+                >
+
+            </div>
+
+        </section>
+
+
+
+        <!-- WHO SPENT -->
+
+        <section class="form-section">
+
+            <label>
+                WHO SPENT?
+            </label>
+
+
+            <div
+                id="payerOptions"
+                class="person-options"
+            ></div>
+
+        </section>
+
+
+
+        <!-- SPLIT -->
+
+        <section class="form-section">
+
+            <label>
+                SHARE BETWEEN
+            </label>
+
+
+            <div class="split-options">
+
+                <button
+                    id="equalButton"
+                    class="split-option active"
+                    onclick="selectSplitType('equal')"
+                >
+
+                    <span class="option-title">
+                        Everyone
+                    </span>
+
+                    <span class="option-description">
+                        Everyone in the group
+                    </span>
+
+                </button>
+
+
+                <button
+                    id="selectedButton"
+                    class="split-option"
+                    onclick="selectSplitType('selected')"
+                >
+
+                    <span class="option-title">
+                        Selected
+                    </span>
+
+                    <span class="option-description">
+                        Choose who's involved
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="selectedPeople"
+                class="selected-people hidden"
+            ></div>
+
+        </section>
+
+
+
+        <!-- SHARE PREVIEW -->
+
+        <section
+            id="sharePreview"
+            class="share-preview hidden"
+        ></section>
+
+
+
+        <button
+            class="primary-button"
+            onclick="saveExpense()"
+        >
+            Add expense
+        </button>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         HISTORY DETAIL
+    ================================================== -->
+
+    <section
+        id="historyPage"
+        class="page hidden"
+    >
+
+        <header class="page-header">
+
+            <button
+                class="back-button"
+                onclick="showGroupPage()"
+            >
+                ←
+            </button>
+
+
+            <div>
+
+                <p class="eyebrow">
+                    HISTORY
+                </p>
+
+                <h2 id="historyTitle">
+                    Settled
+                </h2>
+
+            </div>
+
+        </header>
+
+
+        <div id="historyDetail"></div>
+
+    </section>
+
+
+</main>
+
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
